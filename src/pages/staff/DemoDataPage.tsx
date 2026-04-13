@@ -97,7 +97,7 @@ export default function DemoDataPage() {
     <div className="container mx-auto py-6 space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Demo Data Management</h1>
+          <h1 className="text-2xl font-semibold tracking-tight">Demo Data Management</h1>
           <p className="text-muted-foreground mt-1">
             Seed realistic healthcare data for testing and demonstration purposes
           </p>
@@ -342,3 +342,4 @@ export default function DemoDataPage() {
     </div>
   );
 }
+
