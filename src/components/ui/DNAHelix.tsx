@@ -14,18 +14,18 @@ export const DNAHelix = ({ className }: { className?: string }) => {
       >
         {/* Connection Lines */}
         {dots.map((_, i) => (
-          <motion.line
+          <motion.path
             key={`line-${i}`}
-            x1="40"
-            y1={i * 20 + 10}
-            x2="160"
-            y2={i * 20 + 10}
+            d={`M 40 ${i * 20 + 10} L 160 ${i * 20 + 10}`}
             stroke="#2563EB"
-            strokeWidth="1.5"
-            strokeOpacity="0.3"
+            strokeWidth={1.5}
+            strokeOpacity={0.3}
             animate={{
-              x1: [40, 160, 40],
-              x2: [160, 40, 160],
+              d: [
+                `M 40 ${i * 20 + 10} L 160 ${i * 20 + 10}`,
+                `M 160 ${i * 20 + 10} L 40 ${i * 20 + 10}`,
+                `M 40 ${i * 20 + 10} L 160 ${i * 20 + 10}`
+              ],
               opacity: [0.1, 0.4, 0.1],
             }}
             transition={{
@@ -41,10 +41,11 @@ export const DNAHelix = ({ className }: { className?: string }) => {
         {dots.map((_, i) => (
           <motion.circle
             key={`strand1-${i}`}
-            cx="40"
+            cx={40}
             cy={i * 20 + 10}
-            r="4"
+            r={4}
             fill="#2563EB"
+            initial={{ x: 0, scale: 1, opacity: 0.3 }}
             animate={{
               x: [0, 120, 0],
               scale: [1, 1.3, 1],
@@ -63,10 +64,11 @@ export const DNAHelix = ({ className }: { className?: string }) => {
         {dots.map((_, i) => (
           <motion.circle
             key={`strand2-${i}`}
-            cx="160"
+            cx={160}
             cy={i * 20 + 10}
-            r="4"
+            r={4}
             fill="#60A5FA"
+            initial={{ x: 0, scale: 1, opacity: 0.3 }}
             animate={{
               x: [0, -120, 0],
               scale: [1, 1.3, 1],
