@@ -13,29 +13,36 @@ export const DNAHelix = ({ className }: { className?: string }) => {
         xmlns="http://www.w3.org/2000/svg"
       >
         {/* Connection Lines */}
-        {dots.map((_, i) => (
-          <motion.path
-            key={`line-${i}`}
-            d={`M 40 ${i * 20 + 10} L 160 ${i * 20 + 10}`}
-            stroke="#2563EB"
-            strokeWidth={1.5}
-            strokeOpacity={0.3}
-            animate={{
-              d: [
-                `M 40 ${i * 20 + 10} L 160 ${i * 20 + 10}`,
-                `M 160 ${i * 20 + 10} L 40 ${i * 20 + 10}`,
-                `M 40 ${i * 20 + 10} L 160 ${i * 20 + 10}`
-              ],
-              opacity: [0.1, 0.4, 0.1],
-            }}
-            transition={{
-              duration: 3,
-              repeat: Infinity,
-              delay: i * 0.15,
-              ease: "easeInOut",
-            }}
-          />
-        ))}
+        {dots.map((_, i) => {
+          const y = i * 20 + 10;
+          return (
+            <motion.g
+              key={`line-${i}`}
+              initial={{ scaleX: 1, opacity: 0.1 }}
+              animate={{
+                scaleX: [1, -1, 1],
+                opacity: [0.1, 0.4, 0.1],
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                delay: i * 0.15,
+                ease: "easeInOut",
+              }}
+              style={{ transformOrigin: `100px ${y}px` }}
+            >
+              <line
+                x1={40}
+                y1={y}
+                x2={160}
+                y2={y}
+                stroke="#2563EB"
+                strokeWidth={1.5}
+                strokeOpacity={0.3}
+              />
+            </motion.g>
+          );
+        })}
 
         {/* Strand 1 */}
         {dots.map((_, i) => (
